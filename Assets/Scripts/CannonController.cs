@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class CannonController : MonoBehaviour
 {
@@ -20,7 +21,9 @@ public class CannonController : MonoBehaviour
     public GameObject playerPrefab;
     public float angleIncrement = 0.25f;
     [Header("'Updgradeable' values")]
-    public float firePower = 2.5f;
+    public float firePower = 250f;
+    public float firePowerX = 1f;
+    public float firePowerY = 1f;
     [SerializeField] private CANNON_MODE mode = CANNON_MODE.ANGLE;
     private bool up = true;
 
@@ -67,7 +70,7 @@ public class CannonController : MonoBehaviour
                 break;
         }
 
-        Debug.Log(mode);
+        //Debug.Log(mode);
     }
 
     void GarbageAction(InputAction.CallbackContext ctx)
@@ -107,10 +110,15 @@ public class CannonController : MonoBehaviour
 
     void FireCannon()
     {
-        Debug.Log("spawn");
+        //Debug.Log("spawn");
         var tempChar = Instantiate(playerPrefab, firePoint.position, cannonPivot.transform.rotation);
         PlayerCharacterController player = tempChar.GetComponent<PlayerCharacterController>();
-        player.PlayerRigidBody.AddForce(new Vector2(firePower * 100f, 100f));
+
+        // cache the angle of the cannon to apply as the Y-direction force
+        float zAngle = cannonPivot.transform.eulerAngles.z;
+        Vector3 dir = Quaternion.AngleAxis(zAngle, Vector3.forward) * Vector3.right;
+        Debug.Log($"dir :: {dir}");
+        player.PlayerRigidBody.AddForce(dir*firePower);
     }
 
     #endregion

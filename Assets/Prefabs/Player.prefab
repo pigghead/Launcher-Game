@@ -134,3 +134,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a9f7c14cf249904e9393b4c803681f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreLine: -5
+  distanceTravelled: 0
