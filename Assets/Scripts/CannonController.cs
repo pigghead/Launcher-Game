@@ -22,9 +22,7 @@ public class CannonController : MonoBehaviour
     public float angleIncrement = 0.25f;
     [Header("'Updgradeable' values")]
     public float firePower = 250f;
-    public float firePowerX = 1f;
-    public float firePowerY = 1f;
-    [SerializeField] private CANNON_MODE mode = CANNON_MODE.ANGLE;
+    private CANNON_MODE mode = CANNON_MODE.ANGLE;
     private bool up = true;
 
     void Start()
