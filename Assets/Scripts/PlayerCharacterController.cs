@@ -7,8 +7,8 @@ public class PlayerCharacterController : MonoBehaviour
 {
     Rigidbody2D rb;
     public Rigidbody2D PlayerRigidBody { get => rb; private set => rb = value; }
-    public ScoreManager sm;
     public float scoreLine;
+    private ScoreManager sm;
     public float distanceTravelled = 0;
 
     void Awake()

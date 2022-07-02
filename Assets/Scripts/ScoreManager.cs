@@ -6,20 +6,18 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     public TextMeshProUGUI distanceTravelled;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    public TextMeshProUGUI coinsCollected;
+    private int totalCoins = 0;
+    
     public void UpdateScore(float score)
     {
         distanceTravelled.text = $"Distance: {score}m";
+    }
+
+    public void UpdateCoinsCollected()
+    {
+        totalCoins += 1;
+        coinsCollected.text = $"x{totalCoins}";
+
     }
 }
