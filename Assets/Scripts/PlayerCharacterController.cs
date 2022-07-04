@@ -8,6 +8,7 @@ public class PlayerCharacterController : MonoBehaviour
     Rigidbody2D rb;
     public Rigidbody2D PlayerRigidBody { get => rb; private set => rb = value; }
     public float scoreLine;
+     GameObject camera;
     private ScoreManager sm;
     public float distanceTravelled = 0;
 
@@ -15,6 +16,9 @@ public class PlayerCharacterController : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         sm = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        camera = GameObject.FindGameObjectWithTag("Camera");
+        StartCoroutine(ParentCamera());
+        //camera.transform.parent = this.transform;
     }
 
     void Update()
@@ -28,5 +32,11 @@ public class PlayerCharacterController : MonoBehaviour
         distanceTravelled = Mathf.Floor(gameObject.transform.position.x - scoreLine);
         sm.UpdateScore(distanceTravelled);
         //scoreIndicator.text = $"";
+    }
+
+    IEnumerator ParentCamera()
+    {
+        yield return new WaitForSeconds(0.4f);
+        camera.transform.parent = this.transform;
     }
 }

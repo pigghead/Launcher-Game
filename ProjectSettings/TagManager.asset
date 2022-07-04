@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ScoreManager
   - Coin
+  - Camera
   layers:
   - Default
   - TransparentFX
